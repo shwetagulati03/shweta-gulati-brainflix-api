@@ -49,13 +49,21 @@ router.get("/:id", (req, res) => {
 // POST endpoint to add a video
 router.post("/", (req, res) => {
     const bodyData = req.body; //getting what client passed in the body of the request
-    const staticImage = './images/upload.jpg';
+    const dir = 'http://localhost:8080/';
+    const staticImage = 'images/upload.jpg';
     // Compose a new video object
     const newVideo = {
         id: crypto.randomUUID(),
         title: bodyData.title,
-        channel: bodyData.channel,
-        image: staticImage
+        channel: "Aiden Thompson",
+        image: dir+staticImage,
+        description: bodyData.description,
+        duration:"4:01" ,
+        views:0 ,
+        likes:0 ,
+        timestamp: Math.round(new Date().getTime() / 1000) ,
+        comments: [],
+        
     };
 
     const videos = readVideosData();
