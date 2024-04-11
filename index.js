@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const videosRouter = require('./routes/videos');
 
@@ -9,18 +8,9 @@ require('dotenv').config();
 
 const PORT = process.env.PORT;
 
-app.use(cors());
-
 app.use(express.json());
 
-app.use('/images',express.static('./files'));
-
-app.use((req, res, next) => {
-    //Security check
-    console.log('Access granted');
-    req.user = {access: true};
-    next();
-});
+app.use('/images',express.static('./public'));
 
 app.use("/videos",videosRouter);
 

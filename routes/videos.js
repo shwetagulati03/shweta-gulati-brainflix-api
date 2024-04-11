@@ -35,7 +35,7 @@ router.get("/", (_req, res) => {
 });
 
 // GET video by id
-router.get("/:id", accessMiddleware, (req, res) => {
+router.get("/:id", (req, res) => {
     const videos = readVideosData();
 
     // get the id from the endpoint
@@ -49,13 +49,13 @@ router.get("/:id", accessMiddleware, (req, res) => {
 // POST endpoint to add a video
 router.post("/", (req, res) => {
     const bodyData = req.body; //getting what client passed in the body of the request
-
+    const staticImage = './public/images/upload.jpg';
     // Compose a new video object
     const newVideo = {
         id: crypto.randomUUID(),
         title: bodyData.title,
         channel: bodyData.channel,
-        image: bodyData.image
+        image: staticImage
     };
 
     const videos = readVideosData();
