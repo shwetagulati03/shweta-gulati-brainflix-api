@@ -49,7 +49,7 @@ router.get("/:id", (req, res) => {
 // POST endpoint to add a video
 router.post("/", (req, res) => {
     const bodyData = req.body; //getting what client passed in the body of the request
-    const staticImage = './public/images/upload.jpg';
+    const staticImage = './images/upload.jpg';
     // Compose a new video object
     const newVideo = {
         id: crypto.randomUUID(),

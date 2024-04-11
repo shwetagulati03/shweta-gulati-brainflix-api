@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
-app.use('/images',express.static('./public'));
+app.use(express.static('./public'));
 
 app.use("/videos",videosRouter);
 
