@@ -6,6 +6,8 @@ const crypto = require('crypto');
 const router = express.Router();
 
 const videosFile = "./data/videos.json";
+
+const dir = 'http://localhost:8080/';
 //read videos data
 const readVideosData = () => {
     try{
@@ -21,11 +23,11 @@ const readVideosData = () => {
 router.get("/", (_req, res) => {
     try{
         const videos = readVideosData();
-        const nextVideosData = videos.map(video=>({
+        const nextVideosData = videos.map((video,index)=>({
                                                 id: video.id,
                                                 title: video.title,
                                                 channel: video.channel,
-                                                image: video.image
+                                                image: dir+`images/image${index<9?index:'default'}.jpg`
     }));
     res.json(nextVideosData);
     }
@@ -49,7 +51,7 @@ router.get("/:id", (req, res) => {
 // POST endpoint to add a video
 router.post("/", (req, res) => {
     const bodyData = req.body; //getting what client passed in the body of the request
-    const dir = 'http://localhost:8080/';
+
     const staticImage = 'images/upload.jpg';
     // Compose a new video object
     const newVideo = {
@@ -61,7 +63,7 @@ router.post("/", (req, res) => {
         duration:"4:01" ,
         views:0 ,
         likes:0 ,
-        timestamp: Math.round(Date.now() / 1000) ,
+        timestamp: Math.round(Date.now()) ,
         comments: [],
         
     };
