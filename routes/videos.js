@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
         duration:"4:01" ,
         views:0 ,
         likes:0 ,
-        timestamp: Math.round(new Date().getTime() / 1000) ,
+        timestamp: Math.round(Date.now() / 1000) ,
         comments: [],
         
     };
