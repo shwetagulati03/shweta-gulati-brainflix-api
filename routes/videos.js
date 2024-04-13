@@ -7,7 +7,6 @@ const router = express.Router();
 
 const videosFile = "./data/videos.json";
 
-const dir = 'http://localhost:8080/';
 //read videos data
 const readVideosData = () => {
     try{
@@ -27,7 +26,7 @@ router.get("/", (_req, res) => {
                                                 id: video.id,
                                                 title: video.title,
                                                 channel: video.channel,
-                                                image: dir+`images/image${index<9?index:'default'}.jpg`
+                                                image: video.image
     }));
     res.json(nextVideosData);
     }
@@ -51,7 +50,8 @@ router.get("/:id", (req, res) => {
 // POST endpoint to add a video
 router.post("/", (req, res) => {
     const bodyData = req.body; //getting what client passed in the body of the request
-
+    
+    const dir = 'http://localhost:8080/';
     const staticImage = 'images/upload.jpg';
     // Compose a new video object
     const newVideo = {
